@@ -1,0 +1,21 @@
+{
+    "name": "laravel-enso/impersonate",
+    "description": "Middleware for impersonating users",
+    "type": "middleware",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "mishu",
+            "email": "mishu@xtelecom.ro"
+        }
+    ],
+    "require": {
+        "php": ">=5.6.4",
+        "laravel/framework": "5.4.*"
+    },
+    "autoload": {
+        "psr-4": {
+            "LaravelEnso\\Impersonate\\": "src/"
+        }
+    }
+}

@@ -1,4 +1,5 @@
 # Impersonate
+[![StyleCI](https://styleci.io/repos/94622194/shield?branch=master)](https://styleci.io/repos/94622194)
 [![Total Downloads](https://poser.pugx.org/laravel-enso/impersonate/downloads)](https://packagist.org/packages/laravel-enso/impersonate)
 [![Latest Stable Version](https://poser.pugx.org/laravel-enso/impersonate/version)](https://packagist.org/packages/laravel-enso/impersonate)
 

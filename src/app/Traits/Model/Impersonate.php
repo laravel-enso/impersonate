@@ -4,7 +4,7 @@ namespace LaravelEnso\Impersonate\app\Traits\Model;
 
 trait Impersonate
 {
-	public function startImpersonating(int $id)
+    public function startImpersonating(int $id)
     {
         session()->put('impersonating', $id);
     }

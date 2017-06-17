@@ -6,7 +6,7 @@ use App\User;
 
 trait Impersonate
 {
-	public function impersonate(User $user)
+    public function impersonate(User $user)
     {
         auth()->user()->startImpersonating($user->id);
         flash()->warning(__('Impersonating').' '.$user->full_name);

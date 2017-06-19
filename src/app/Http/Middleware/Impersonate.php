@@ -3,7 +3,7 @@
 namespace LaravelEnso\Impersonate\app\Http\Middleware;
 
 use Closure;
-use LaravelEnso\Core\app\Http\Middleware\VerifyRouteAccess;
+use LaravelEnso\PermissionManager\app\Http\Middleware\VerifyRouteAccess;
 
 class Impersonate
 {

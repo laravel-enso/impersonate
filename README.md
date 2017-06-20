@@ -6,8 +6,6 @@
 
 Middleware for impersonating users.
 
-It creates the "impersonate" middleware.
-
 ### Installation Steps
 
 1. Add `LaravelEnso\Impersonate\ImpersonateServiceProvider::class` to your providers list in config/app.php.

@@ -1,7 +1,7 @@
 {
     "name": "laravel-enso/impersonate",
-    "description": "Middleware for impersonating users",
-    "type": "middleware",
+    "description": "Depedency for Laravel Enso user impersonating",
+    "type": "depedency",
     "license": "MIT",
     "authors": [
         {

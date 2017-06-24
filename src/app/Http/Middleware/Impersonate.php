@@ -12,9 +12,7 @@ class Impersonate
         if ($request->session()->has('impersonating')) {
             auth()->onceUsingId($request->session()->get('impersonating'));
 
-            if (class_exists(VerifyRouteAccess::class)) {
-                return (new VerifyRouteAccess())->handle($request, $next);
-            }
+            return (new VerifyRouteAccess())->handle($request, $next);
         }
 
         return $next($request);

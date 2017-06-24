@@ -6,7 +6,7 @@ use LaravelEnso\Core\app\Models\User;
 
 class ImpersonateController
 {
-	public function start(User $user)
+    public function start(User $user)
     {
         session()->put('impersonating', $user->id);
         flash()->warning(__('Impersonating').' '.$user->full_name);

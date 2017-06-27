@@ -6,6 +6,13 @@
 
 User impersonation dependency for [Laravel Enso](https://github.com/laravel-enso/Enso).
 
+### Details
+
+- allows a user to impersonate another user, by using a middleware
+- permits testing and debugging from the perspective of another user, without needing his credentials
+- comes with its own controller, routes and blade components that permit starting and stopping the impersonation process
+- depends on [Permission Manager](https://github.com/laravel-enso/PermissionManager) in order to be able to verify permissions
+
 ### Notes
 
 The [Laravel Enso Core](https://github.com/laravel-enso/Core) package comes with this package included.

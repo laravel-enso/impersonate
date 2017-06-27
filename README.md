@@ -4,8 +4,12 @@
 [![Total Downloads](https://poser.pugx.org/laravel-enso/impersonate/downloads)](https://packagist.org/packages/laravel-enso/impersonate)
 [![Latest Stable Version](https://poser.pugx.org/laravel-enso/impersonate/version)](https://packagist.org/packages/laravel-enso/impersonate)
 
-Dependency for [Laravel Enso](https://github.com/laravel-enso/Enso) user impersonating
+User impersonation dependency for [Laravel Enso](https://github.com/laravel-enso/Enso).
+
+### Notes
+
+The [Laravel Enso Core](https://github.com/laravel-enso/Core) package comes with this package included.
 
 ### Contributions
 
-...are welcome
+are welcome

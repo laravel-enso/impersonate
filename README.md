@@ -6,6 +6,8 @@
 
 User impersonation dependency for [Laravel Enso](https://github.com/laravel-enso/Enso).
 
+[![Watch the demo](https://laravel-enso.github.io/impersonate/screenshots/Selection_014.png)](https://laravel-enso.github.io/impersonate/videos/how_to_impersonate.webm)
+
 ### Details
 
 - allows a user to impersonate another user, by using a middleware

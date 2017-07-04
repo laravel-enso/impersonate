@@ -54,14 +54,14 @@ class ImpersonateTest extends TestCase
     private function postParams()
     {
         return [
-            'first_name'   => $this->faker->firstName,
+            'first_name'                 => $this->faker->firstName,
             'last_name'                  => $this->faker->lastName,
-            'email'               => $this->faker->email,
-            'owner_id'               => $this->owner->id,
-            'role_id'           => $this->role->id,
-            'phone'                  => $this->faker->phoneNumber,
-            'is_active'               => 1,
-            '_method'               => 'POST',
+            'email'                      => $this->faker->email,
+            'owner_id'                   => $this->owner->id,
+            'role_id'                    => $this->role->id,
+            'phone'                      => $this->faker->phoneNumber,
+            'is_active'                  => 1,
+            '_method'                    => 'POST',
         ];
     }
 }

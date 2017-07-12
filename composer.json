@@ -1,12 +1,20 @@
 {
     "name": "laravel-enso/impersonate",
     "description": "User impersonation dependency for Laravel Enso",
+    "keywords": [
+        "laravel-enso",
+        "impersonate",
+        "impersonate-users"
+    ],
+    "homepage": "https://github.com/laravel-enso/Impersonate",
     "type": "library",
     "license": "MIT",
     "authors": [
         {
-            "name": "Mishu",
-            "email": "mishu@xtelecom.ro"
+            "name": "Adrian Ocneanu",
+            "email": "aocneanu@gmail.com",
+            "homepage": "https://laravel-enso.com",
+            "role": "Developer"
         }
     ],
     "require": {
@@ -17,6 +25,14 @@
     "autoload": {
         "psr-4": {
             "LaravelEnso\\Impersonate\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "LaravelEnso\\ImpersonateServiceProvider"
+            ],
+            "aliases": {}
         }
     }
 }

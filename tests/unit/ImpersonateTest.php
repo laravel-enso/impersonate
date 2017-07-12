@@ -37,7 +37,7 @@ class ImpersonateTest extends TestCase
 
         $response->assertStatus(302);
         $response->assertSessionHas('impersonating');
-        $this->assertTrue(session('flash_notification')[0]->message === 
+        $this->assertTrue(session('flash_notification')[0]->message ===
             'Impersonating '.$userToImpersonate->fullName);
     }
 
@@ -111,7 +111,7 @@ class ImpersonateTest extends TestCase
 
     private function createRoleWithAllPermissions()
     {
-       $role = Role::create([
+        $role = Role::create([
             'name'                 => 'roleWithAllPermissions',
             'display_name'         => $this->faker->word,
             'description'          => $this->faker->sentence,
@@ -123,7 +123,7 @@ class ImpersonateTest extends TestCase
 
     private function createRoleWithDefaultPermissions()
     {
-       $role = Role::create([
+        $role = Role::create([
             'name'                 => 'roleWithDefaultPermissions',
             'display_name'         => $this->faker->word,
             'description'          => $this->faker->sentence,

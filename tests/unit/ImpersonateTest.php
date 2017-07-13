@@ -111,24 +111,29 @@ class ImpersonateTest extends TestCase
 
     private function createRoleWithAllPermissions()
     {
+        $menu = Menu::first(['id']);
+
         $role = Role::create([
             'name'                 => 'roleWithAllPermissions',
             'display_name'         => $this->faker->word,
             'description'          => $this->faker->sentence,
-            'menu_id'              => Menu::first(['id'])->id,
+            'menu_id'              => $menu->id,
         ]);
-        $permissions = Permission::all()->pluck('id');
+        $permissions = Permission::pluck('id');
         $role->permissions()->attach($permissions);
     }
 
     private function createRoleWithDefaultPermissions()
     {
+        $menu = Menu::first(['id']);
+
         $role = Role::create([
             'name'                 => 'roleWithDefaultPermissions',
             'display_name'         => $this->faker->word,
             'description'          => $this->faker->sentence,
-            'menu_id'              => Menu::first(['id'])->id,
+            'menu_id'              => $menu->id,
         ]);
+
         $permissions = Permission::implicit()->pluck('id');
         $role->permissions()->attach($permissions);
     }
@@ -142,7 +147,8 @@ class ImpersonateTest extends TestCase
             'is_active'                  => 1,
         ]);
         $user->email = $this->faker->email;
-        $user->owner_id = Owner::first(['id']);
+        $owner = Owner::first(['id']);
+        $user->owner_id = $owner->id;
         $user->role_id = $role->id;
         $user->save();
     }

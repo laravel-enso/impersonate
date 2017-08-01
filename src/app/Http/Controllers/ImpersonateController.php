@@ -10,9 +10,8 @@ class ImpersonateController extends Controller
     public function start(User $user)
     {
         $this->authorize('impersonate', $user);
-
         session()->put('impersonating', $user->id);
-        flash()->warning(__('Impersonating').' '.$user->full_name);
+        flash()->warning(__('Impersonating').' '.$user->fullName);
 
         return redirect()->back();
     }

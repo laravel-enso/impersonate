@@ -14,6 +14,8 @@ class ImpersonateTest extends TestCase
     use DatabaseMigrations;
 
     private $faker;
+    private $impersonator;
+    private $userToImpersonate;
 
     protected function setUp()
     {
@@ -24,111 +26,91 @@ class ImpersonateTest extends TestCase
     }
 
     /** @test */
-    public function canImpersonateIfIsAllowed()
+    public function can_impersonate()
     {
-        $this->createRoleWithAllPermissions();
-        $role = Role::whereName('roleWithAllPermissions')->first(['id']);
-        $this->createUser('impersonator', $role);
-        $this->createUser('userToImpersonate', $role);
-        $userToImpersonate = User::whereFirstName('userToImpersonate')->first();
-        $this->actingAs(User::whereFirstName('impersonator')->first());
+        $this->setUpUsers($this->adminRole());
 
-        $response = $this->get('/core/impersonate/'.$userToImpersonate->id);
-
-        $response->assertStatus(302);
-        $response->assertSessionHas('impersonating');
-        $this->assertTrue(session('flash_notification')[0]->message ===
-            'Impersonating '.$userToImpersonate->fullName);
+        $this->get('/core/impersonate/'.$this->userToImpersonate->id)
+            ->assertStatus(302)
+            ->assertSessionHas('impersonating')
+            ->assertSessionHas('flash_notification');
     }
 
     /** @test */
-    public function cantImpersonateIfIsNotAllowed()
+    public function cant_impersonate_if_is_not_allowed()
     {
-        $this->createRoleWithDefaultPermissions();
-        $role = Role::whereName('roleWithDefaultPermissions')->first(['id']);
-        $this->createUser('impersonator', $role);
-        $this->createUser('userToImpersonate', $role);
-        $userToImpersonate = User::whereFirstName('userToImpersonate')->first();
-        $this->actingAs(User::whereFirstName('impersonator')->first());
+        $this->setUpUsers($this->defaultAccessRole());
 
-        $response = $this->get('/core/impersonate/'.$userToImpersonate->id);
-
-        $this->assertTrue(session('flash_notification')[0]->level === 'danger');
-        $response->assertStatus(302);
-        $response->assertSessionMissing('impersonating');
+        $this->get('/core/impersonate/'.$this->userToImpersonate->id)
+            ->assertStatus(302)
+            ->assertSessionMissing('impersonating')
+            ->assertSessionHas('flash_notification');
     }
 
     /** @test */
-    public function cantImpersonateIfIsImpersonating()
+    public function cant_impersonate_if_is_impersonating()
     {
-        $this->createRoleWithAllPermissions();
-        $role = Role::whereName('roleWithAllPermissions')->first(['id']);
-        $this->createUser('impersonator', $role);
-        $this->createUser('userToImpersonate', $role);
-        $userToImpersonate = User::whereFirstName('userToImpersonate')->first();
-        $this->actingAs(User::whereFirstName('impersonator')->first());
-        $response = $this->get('/core/impersonate/'.$userToImpersonate->id);
+        $this->setUpUsers($this->adminRole());
 
-        $response = $this->get('/core/impersonate/'.$userToImpersonate->id);
-
-        $response->assertStatus(403);
+        $this->withSession([ 'impersonating' => $this->userToImpersonate->id ])
+            ->get('/core/impersonate/'.$this->userToImpersonate->id)
+            ->assertStatus(403);
     }
 
     /** @test */
-    public function cantImpersonateSelf()
+    public function cant_impersonate_self()
     {
-        $this->createRoleWithAllPermissions();
-        $role = Role::whereName('roleWithAllPermissions')->first(['id']);
-        $this->createUser('userToImpersonate', $role);
-        $userToImpersonate = User::whereFirstName('userToImpersonate')->first(['id']);
-        $this->actingAs($userToImpersonate);
+        $this->userToImpersonate = $this->createUser('userToImpersonate', $this->adminRole());
+        $this->actingAs($this->userToImpersonate);
 
-        $response = $this->get('/core/impersonate/'.$userToImpersonate->id);
-
-        $response->assertStatus(302);
-        $response->assertSessionMissing('impersonating');
+        $this->get('/core/impersonate/'.$this->userToImpersonate->id)
+            ->assertStatus(403)
+            ->assertSessionMissing('impersonating');
     }
 
     /** @test */
-    public function stopImpersonating()
+    public function stop_impersonating()
     {
-        $this->createRoleWithAllPermissions();
-        $role = Role::whereName('roleWithAllPermissions')->first(['id']);
-        $this->createUser('impersonator', $role);
-        $this->createUser('userToImpersonate', $role);
-        $userToImpersonate = User::whereFirstName('userToImpersonate')->first();
-        $this->actingAs(User::whereFirstName('impersonator')->first());
+        $this->setUpUsers($this->adminRole());
 
-        $response = $this->get('/core/impersonate/'.$userToImpersonate->id);
-        $response->assertSessionHas('impersonating');
-
-        $response = $this->get('/core/impersonate/stop');
-
-        $response->assertSessionMissing('impersonating');
-        $response->assertStatus(302);
-        $response->assertSessionHas('flash_notification');
+        $this->withSession([ 'impersonating' => $this->userToImpersonate->id ])
+            ->get('/core/impersonate/stop')
+            ->assertSessionMissing('impersonating')
+            ->assertStatus(302)
+            ->assertSessionHas('flash_notification');
     }
 
-    private function createRoleWithAllPermissions()
+    private function setUpUsers(Role $role)
+    {
+        $this->impersonator = $this->createUser('impersonator', $role);
+        $this->userToImpersonate = $this->createUser('userToImpersonate', $role);
+
+        $this->actingAs($this->impersonator);
+    }
+
+    private function adminRole()
     {
         $menu = Menu::first(['id']);
 
         $role = Role::create([
-            'name'                 => 'roleWithAllPermissions',
+            'name'                 => 'adminRole',
             'display_name'         => $this->faker->word,
             'description'          => $this->faker->sentence,
             'menu_id'              => $menu->id,
         ]);
+
         $permissions = Permission::pluck('id');
         $role->permissions()->attach($permissions);
+
+        return $role;
     }
 
-    private function createRoleWithDefaultPermissions()
+    private function defaultAccessRole()
     {
         $menu = Menu::first(['id']);
 
         $role = Role::create([
-            'name'                 => 'roleWithDefaultPermissions',
+            'name'                 => 'defaultAccessRole',
             'display_name'         => $this->faker->word,
             'description'          => $this->faker->sentence,
             'menu_id'              => $menu->id,
@@ -136,6 +118,8 @@ class ImpersonateTest extends TestCase
 
         $permissions = Permission::implicit()->pluck('id');
         $role->permissions()->attach($permissions);
+
+        return $role;
     }
 
     private function createUser($firstName, $role)
@@ -151,5 +135,7 @@ class ImpersonateTest extends TestCase
         $user->owner_id = $owner->id;
         $user->role_id = $role->id;
         $user->save();
+
+        return $user;
     }
 }

@@ -52,7 +52,7 @@ class ImpersonateTest extends TestCase
     {
         $this->setUpUsers($this->adminRole());
 
-        $this->withSession([ 'impersonating' => $this->userToImpersonate->id ])
+        $this->withSession(['impersonating' => $this->userToImpersonate->id])
             ->get('/core/impersonate/'.$this->userToImpersonate->id)
             ->assertStatus(403);
     }
@@ -73,7 +73,7 @@ class ImpersonateTest extends TestCase
     {
         $this->setUpUsers($this->adminRole());
 
-        $this->withSession([ 'impersonating' => $this->userToImpersonate->id ])
+        $this->withSession(['impersonating' => $this->userToImpersonate->id])
             ->get('/core/impersonate/stop')
             ->assertSessionMissing('impersonating')
             ->assertStatus(302)

@@ -11,16 +11,14 @@ class ImpersonateController extends Controller
     {
         $this->authorize('impersonate', $user);
         session()->put('impersonating', $user->id);
-        flash()->warning(__('Impersonating').' '.$user->fullName);
 
-        return redirect()->back();
+        return [ 'message' => __('Impersonating').' '.$user->fullName ];
     }
 
     public function stop()
     {
         session()->forget('impersonating');
-        flash()->success(__('Welcome Back'));
 
-        return redirect()->back();
+        return [ 'message' => __('Welcome Back') ];
     }
 }

@@ -3,6 +3,7 @@
 use App\Owner;
 use App\User;
 use Faker\Factory;
+use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use LaravelEnso\MenuManager\app\Models\Menu;
 use LaravelEnso\PermissionManager\app\Models\Permission;
@@ -21,7 +22,7 @@ class ImpersonateTest extends TestCase
     {
         parent::setUp();
 
-        // $this->disableExceptionHandling();
+        $this->disableExceptionHandling();
         $this->faker = Factory::create();
     }
 
@@ -30,10 +31,10 @@ class ImpersonateTest extends TestCase
     {
         $this->setUpUsers($this->adminRole());
 
-        $this->get('/core/impersonate/'.$this->userToImpersonate->id)
-            ->assertStatus(302)
+        $this->get(route('core.impersonate.start', $this->userToImpersonate->id, false))
+            ->assertStatus(200)
             ->assertSessionHas('impersonating')
-            ->assertSessionHas('flash_notification');
+            ->assertJsonStructure(['message']);
     }
 
     /** @test */
@@ -41,10 +42,9 @@ class ImpersonateTest extends TestCase
     {
         $this->setUpUsers($this->defaultAccessRole());
 
-        $this->get('/core/impersonate/'.$this->userToImpersonate->id)
-            ->assertStatus(302)
-            ->assertSessionMissing('impersonating')
-            ->assertSessionHas('flash_notification');
+        $this->expectException(EnsoException::class);
+
+        $this->get(route('core.impersonate.start', $this->userToImpersonate->id, false));
     }
 
     /** @test */
@@ -52,9 +52,10 @@ class ImpersonateTest extends TestCase
     {
         $this->setUpUsers($this->adminRole());
 
+        $this->expectException(AuthorizationException::class);
+
         $this->withSession(['impersonating' => $this->userToImpersonate->id])
-            ->get('/core/impersonate/'.$this->userToImpersonate->id)
-            ->assertStatus(403);
+            ->get('/core/impersonate/'.$this->userToImpersonate->id);
     }
 
     /** @test */
@@ -63,9 +64,9 @@ class ImpersonateTest extends TestCase
         $this->userToImpersonate = $this->createUser('userToImpersonate', $this->adminRole());
         $this->actingAs($this->userToImpersonate);
 
-        $this->get('/core/impersonate/'.$this->userToImpersonate->id)
-            ->assertStatus(403)
-            ->assertSessionMissing('impersonating');
+        $this->expectException(AuthorizationException::class);
+
+        $this->get('/core/impersonate/'.$this->userToImpersonate->id);
     }
 
     /** @test */
@@ -76,8 +77,8 @@ class ImpersonateTest extends TestCase
         $this->withSession(['impersonating' => $this->userToImpersonate->id])
             ->get('/core/impersonate/stop')
             ->assertSessionMissing('impersonating')
-            ->assertStatus(302)
-            ->assertSessionHas('flash_notification');
+            ->assertStatus(200)
+            ->assertJsonStructure(['message']);
     }
 
     private function setUpUsers(Role $role)

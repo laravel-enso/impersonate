@@ -34,7 +34,8 @@
     "extra": {
         "laravel": {
             "providers": [
-                "LaravelEnso\\Impersonate\\ImpersonateServiceProvider"
+                "LaravelEnso\\Impersonate\\ImpersonateServiceProvider",
+                "LaravelEnso\\Impersonate\\AuthServiceProvider"
             ],
             "aliases": {}
         }

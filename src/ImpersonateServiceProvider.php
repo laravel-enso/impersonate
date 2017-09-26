@@ -16,6 +16,6 @@ class ImpersonateServiceProvider extends ServiceProvider
 
     public function register()
     {
-        $this->app->register(AuthServiceProvider::class);
+        //
     }
 }

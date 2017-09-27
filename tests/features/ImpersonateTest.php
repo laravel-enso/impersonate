@@ -41,7 +41,7 @@ class ImpersonateTest extends TestCase
     {
         $this->setUpUsers($this->defaultAccessRole());
 
-        $response = $this->get(route('core.impersonate.start', $this->userToImpersonate->id, false))
+        $this->get(route('core.impersonate.start', $this->userToImpersonate->id, false))
             ->assertStatus(403);
     }
 
@@ -50,7 +50,7 @@ class ImpersonateTest extends TestCase
     {
         $this->setUpUsers($this->adminRole());
 
-        $response = $this->withSession(['impersonating' => $this->userToImpersonate->id])
+        $this->withSession(['impersonating' => $this->userToImpersonate->id])
             ->get('/core/impersonate/'.$this->userToImpersonate->id)
             ->assertStatus(403);
     }

@@ -51,7 +51,7 @@ class ImpersonateTest extends TestCase
         $this->setUpUsers($this->adminRole());
 
         $response = $this->withSession(['impersonating' => $this->userToImpersonate->id])
-            ->get('/core/impersonate/' . $this->userToImpersonate->id)
+            ->get('/core/impersonate/'.$this->userToImpersonate->id)
             ->assertStatus(403);
     }
 
@@ -61,7 +61,7 @@ class ImpersonateTest extends TestCase
         $this->userToImpersonate = $this->createUser('userToImpersonate', $this->adminRole());
         $this->actingAs($this->userToImpersonate);
 
-        $this->get('/core/impersonate/' . $this->userToImpersonate->id)
+        $this->get('/core/impersonate/'.$this->userToImpersonate->id)
             ->assertStatus(403);
     }
 
@@ -79,7 +79,7 @@ class ImpersonateTest extends TestCase
 
     private function setUpUsers(Role $role)
     {
-        $this->impersonator      = $this->createUser('impersonator', $role);
+        $this->impersonator = $this->createUser('impersonator', $role);
         $this->userToImpersonate = $this->createUser('userToImpersonate', $role);
 
         $this->actingAs($this->impersonator);
@@ -127,10 +127,10 @@ class ImpersonateTest extends TestCase
             'phone'      => $this->faker->phoneNumber,
             'is_active'  => 1,
         ]);
-        $user->email    = $this->faker->email;
-        $owner          = Owner::first(['id']);
+        $user->email = $this->faker->email;
+        $owner = Owner::first(['id']);
         $user->owner_id = $owner->id;
-        $user->role_id  = $role->id;
+        $user->role_id = $role->id;
         $user->save();
 
         return $user;

@@ -71,7 +71,7 @@ class ImpersonateTest extends TestCase
         $this->setUpUsers($this->adminRole());
 
         $this->withSession(['impersonating' => $this->userToImpersonate->id])
-            ->get(route('core.impersonate.stop', [] , false))
+            ->get(route('core.impersonate.stop', [], false))
             ->assertSessionMissing('impersonating')
             ->assertStatus(200)
             ->assertJsonStructure(['message']);

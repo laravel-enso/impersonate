@@ -42,9 +42,8 @@ class ImpersonateTest extends TestCase
         $this->setUpUsers($this->defaultAccessRole());
 
         $this->get('/core/impersonate/'.$this->userToImpersonate->id)
-            ->assertStatus(302)
-            ->assertSessionMissing('impersonating')
-            ->assertSessionHas('flash_notification');
+            ->assertStatus(455)
+            ->assertSessionMissing('impersonating');
     }
 
     /** @test */

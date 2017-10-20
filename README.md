@@ -17,10 +17,20 @@ User impersonation dependency for [Laravel Enso](https://github.com/laravel-enso
 
 - allows a user to impersonate another user, by using a middleware
 - permits testing and debugging from the perspective of another user, without needing his credentials
-- comes with its own controller, routes and blade components that permit starting and stopping the impersonation process
+- comes with its own controller and routes that permit starting and stopping the impersonation process
 - depends on [Permission Manager](https://github.com/laravel-enso/PermissionManager) in order to be able to verify permissions
 
+### Installation Steps
+
+1. Run the migrations `php artisan migrate`
+
+2. Use the `Impersonate` trait inside your user model - as this will allow the middleware to work correctly 
+
+4. Use the `api/core/impersonate/{user}` and `api/core/impersonate/stop` routes to start, respectively stop the impersonation    
+
 ### Notes
+
+The access for the impersonation process is determined by the (admin) user's access to the impersonation routes.
 
 The [Laravel Enso Core](https://github.com/laravel-enso/Core) package comes with this package included.
 

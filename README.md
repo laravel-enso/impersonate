@@ -10,7 +10,7 @@
 
 User impersonation dependency for [Laravel Enso](https://github.com/laravel-enso/Enso).
 
-[![Watch the demo](https://laravel-enso.github.io/impersonate/screenshots/Selection_014_thumb.png)](https://laravel-enso.github.io/impersonate/videos/how_to_impersonate.webm)
+[![Watch the demo](https://laravel-enso.github.io/impersonate/screenshots/bulma_014_thumb.png)](https://laravel-enso.github.io/impersonate/videos/bulma_how_to_impersonate.webm)
 <sup>click on the photo to view a short demo in compatible browsers</sup>
 
 ### Details

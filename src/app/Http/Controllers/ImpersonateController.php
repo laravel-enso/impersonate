@@ -10,6 +10,7 @@ class ImpersonateController extends Controller
     public function start(User $user)
     {
         $this->authorize('impersonate', $user);
+
         session()->put('impersonating', $user->id);
 
         return ['message' => __('Impersonating').' '.$user->fullName];

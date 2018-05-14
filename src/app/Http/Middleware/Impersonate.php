@@ -10,9 +10,12 @@ class Impersonate
     public function handle($request, Closure $next)
     {
         if ($request->session()->has('impersonating')) {
-            auth()->onceUsingId($request->session()->get('impersonating'));
+            auth()->onceUsingId(
+                $request->session()->get('impersonating')
+            );
 
-            return (new VerifyRouteAccess())->handle($request, $next);
+            return (new VerifyRouteAccess())
+                ->handle($request, $next);
         }
 
         return $next($request);

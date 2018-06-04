@@ -90,10 +90,10 @@ class ImpersonateTest extends TestCase
         $menu = Menu::first(['id']);
 
         $role = Role::create([
-            'name'         => 'adminRole',
+            'name' => 'adminRole',
             'display_name' => $this->faker->word,
-            'description'  => $this->faker->sentence,
-            'menu_id'      => $menu->id,
+            'description' => $this->faker->sentence,
+            'menu_id' => $menu->id,
         ]);
 
         $permissions = Permission::pluck('id');
@@ -107,13 +107,14 @@ class ImpersonateTest extends TestCase
         $menu = Menu::first(['id']);
 
         $role = Role::create([
-            'name'         => 'defaultAccessRole',
+            'name' => 'defaultAccessRole',
             'display_name' => $this->faker->word,
-            'description'  => $this->faker->sentence,
-            'menu_id'      => $menu->id,
+            'description' => $this->faker->sentence,
+            'menu_id' => $menu->id,
         ]);
 
         $permissions = Permission::implicit()->pluck('id');
+
         $role->permissions()->attach($permissions);
 
         return $role;
@@ -123,9 +124,9 @@ class ImpersonateTest extends TestCase
     {
         $user = new User([
             'first_name' => $firstName,
-            'last_name'  => $this->faker->lastName,
-            'phone'      => $this->faker->phoneNumber,
-            'is_active'  => 1,
+            'last_name' => $this->faker->lastName,
+            'phone' => $this->faker->phoneNumber,
+            'is_active' => 1,
         ]);
         $user->email = $this->faker->email;
         $owner = Owner::first(['id']);

@@ -2,7 +2,7 @@
 
 namespace LaravelEnso\Impersonate\app\Traits;
 
-trait Impersonate
+trait Impersonates
 {
     public function isImpersonating()
     {

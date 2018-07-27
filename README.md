@@ -1,4 +1,3 @@
-<!--h-->
 # Impersonate
 
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/fdc8f68f71064cd0b811462ef097879d)](https://www.codacy.com/app/laravel-enso/Impersonate?utm_source=github.com&utm_medium=referral&utm_content=laravel-enso/Impersonate&utm_campaign=badger)
@@ -6,7 +5,6 @@
 [![License](https://poser.pugx.org/laravel-enso/impersonate/license)](https://packagist.org/packages/laravel-enso/impersonate)
 [![Total Downloads](https://poser.pugx.org/laravel-enso/impersonate/downloads)](https://packagist.org/packages/laravel-enso/impersonate)
 [![Latest Stable Version](https://poser.pugx.org/laravel-enso/impersonate/version)](https://packagist.org/packages/laravel-enso/impersonate)
-<!--/h-->
 
 User impersonation dependency for [Laravel Enso](https://github.com/laravel-enso/Enso).
 
@@ -20,21 +18,10 @@ User impersonation dependency for [Laravel Enso](https://github.com/laravel-enso
 - comes with its own controller and routes that permit starting and stopping the impersonation process
 - depends on [Permission Manager](https://github.com/laravel-enso/PermissionManager) in order to be able to verify permissions
 
-### Installation Steps
+### Configuration & Usage
 
-1. Run the migrations `php artisan migrate`
+Be sure to check out the full documentation for this package available at [docs.laravel-enso.com](https://docs.laravel-enso.com/packages/impersonate.html)
 
-2. Use the `Impersonate` trait inside your user model - as this will allow the middleware to work correctly 
-
-4. Use the `api/core/impersonate/{user}` and `api/core/impersonate/stop` routes to start, respectively stop the impersonation    
-
-### Notes
-
-The access for the impersonation process is determined by the (admin) user's access to the impersonation routes.
-
-The [Laravel Enso Core](https://github.com/laravel-enso/Core) package comes with this package included.
-
-<!--h-->
 ### Contributions
 
 are welcome. Pull requests are great, but issues are good too.

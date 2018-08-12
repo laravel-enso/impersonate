@@ -1,17 +1,18 @@
 <?php
 
-use App\Owner;
 use App\User;
+use App\Owner;
 use Faker\Factory;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use LaravelEnso\MenuManager\app\Models\Menu;
-use LaravelEnso\PermissionManager\app\Models\Permission;
-use LaravelEnso\RoleManager\app\Models\Role;
 use Tests\TestCase;
+use LaravelEnso\MenuManager\app\Models\Menu;
+use LaravelEnso\RoleManager\app\Models\Role;
+use LaravelEnso\TestHelper\app\Traits\SignIn;
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use LaravelEnso\PermissionManager\app\Models\Permission;
 
 class ImpersonateTest extends TestCase
 {
-    use RefreshDatabase;
+    use RefreshDatabase, SignIn;
 
     private $faker;
     private $impersonator;
@@ -22,6 +23,7 @@ class ImpersonateTest extends TestCase
         parent::setUp();
 
         // $this->withoutExceptionHandling();
+        $this->signIn(User::first());
         $this->faker = Factory::create();
     }
 

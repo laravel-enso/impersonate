@@ -23,7 +23,10 @@ class ImpersonateTest extends TestCase
         parent::setUp();
 
         // $this->withoutExceptionHandling();
-        $this->signIn(User::first());
+
+        $this->seed()
+            ->signIn(User::first());
+
         $this->faker = Factory::create();
     }
 
@@ -61,6 +64,7 @@ class ImpersonateTest extends TestCase
     public function cant_impersonate_self()
     {
         $this->userToImpersonate = $this->createUser('userToImpersonate', $this->adminRole());
+
         $this->actingAs($this->userToImpersonate);
 
         $this->get(route('core.impersonate.start', $this->userToImpersonate->id, false))
@@ -98,8 +102,8 @@ class ImpersonateTest extends TestCase
             'menu_id' => $menu->id,
         ]);
 
-        $permissions = Permission::pluck('id');
-        $role->permissions()->attach($permissions);
+        $role->permissions()
+            ->attach(Permission::pluck('id'));
 
         return $role;
     }
@@ -115,27 +119,22 @@ class ImpersonateTest extends TestCase
             'menu_id' => $menu->id,
         ]);
 
-        $permissions = Permission::implicit()->pluck('id');
-
-        $role->permissions()->attach($permissions);
+        $role->permissions()
+            ->attach(Permission::implicit()->pluck('id'));
 
         return $role;
     }
 
     private function createUser($firstName, $role)
     {
-        $user = new User([
+        return User::create([
             'first_name' => $firstName,
             'last_name' => $this->faker->lastName,
             'phone' => $this->faker->phoneNumber,
             'is_active' => 1,
+            'email' => $this->faker->email,
+            'owner_id' => Owner::first(['id'])->id,
+            'role_id' => $role->id,
         ]);
-        $user->email = $this->faker->email;
-        $owner = Owner::first(['id']);
-        $user->owner_id = $owner->id;
-        $user->role_id = $role->id;
-        $user->save();
-
-        return $user;
     }
 }

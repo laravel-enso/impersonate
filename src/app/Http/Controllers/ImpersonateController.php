@@ -14,7 +14,7 @@ class ImpersonateController extends Controller
         session()->put('impersonating', $user->id);
 
         return [
-            'message' => __('Impersonating').' '.$user->fullName
+            'message' => __('Impersonating').' '.$user->fullName,
         ];
     }
 
@@ -23,7 +23,7 @@ class ImpersonateController extends Controller
         session()->forget('impersonating');
 
         return [
-            'message' => __('Welcome Back')
+            'message' => __('Welcome Back'),
         ];
     }
 }

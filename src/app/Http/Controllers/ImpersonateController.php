@@ -13,13 +13,17 @@ class ImpersonateController extends Controller
 
         session()->put('impersonating', $user->id);
 
-        return ['message' => __('Impersonating').' '.$user->fullName];
+        return [
+            'message' => __('Impersonating').' '.$user->fullName
+        ];
     }
 
     public function stop()
     {
         session()->forget('impersonating');
 
-        return ['message' => __('Welcome Back')];
+        return [
+            'message' => __('Welcome Back')
+        ];
     }
 }

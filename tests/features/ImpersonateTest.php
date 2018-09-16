@@ -1,9 +1,9 @@
 <?php
 
-use App\User;
-use App\Owner;
+use LaravelEnso\Core\app\Models\User;
 use Faker\Factory;
 use Tests\TestCase;
+use LaravelEnso\Core\app\Models\Owner;
 use LaravelEnso\MenuManager\app\Models\Menu;
 use LaravelEnso\RoleManager\app\Models\Role;
 use LaravelEnso\TestHelper\app\Traits\SignIn;

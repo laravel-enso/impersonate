@@ -2,11 +2,14 @@
 
 namespace LaravelEnso\Impersonate\app\Http\Controllers;
 
-use App\Http\Controllers\Controller;
+use Illuminate\Routing\Controller;
 use LaravelEnso\Core\app\Models\User;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class ImpersonateController extends Controller
 {
+    use AuthorizesRequests;
+
     public function start(User $user)
     {
         $this->authorize('impersonate', $user);

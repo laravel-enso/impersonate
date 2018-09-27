@@ -22,7 +22,7 @@ class ImpersonateTest extends TestCase
     {
         parent::setUp();
 
-        $this->withoutExceptionHandling();
+        // $this->withoutExceptionHandling();
 
         $this->seed()
             ->signIn(User::first());

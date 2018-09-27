@@ -22,7 +22,7 @@ class ImpersonateTest extends TestCase
     {
         parent::setUp();
 
-        // $this->withoutExceptionHandling();
+        $this->withoutExceptionHandling();
 
         $this->seed()
             ->signIn(User::first());
@@ -103,7 +103,7 @@ class ImpersonateTest extends TestCase
         ]);
 
         $role->permissions()
-            ->attach(Permission::pluck('id'));
+            ->sync(Permission::pluck('id'));
 
         return $role;
     }
@@ -120,7 +120,7 @@ class ImpersonateTest extends TestCase
         ]);
 
         $role->permissions()
-            ->attach(Permission::implicit()->pluck('id'));
+            ->sync(Permission::implicit()->pluck('id'));
 
         return $role;
     }

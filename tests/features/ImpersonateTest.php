@@ -3,7 +3,6 @@
 use LaravelEnso\Core\app\Models\User;
 use Faker\Factory;
 use Tests\TestCase;
-use LaravelEnso\Core\app\Models\Owner;
 use LaravelEnso\MenuManager\app\Models\Menu;
 use LaravelEnso\RoleManager\app\Models\Role;
 use LaravelEnso\TestHelper\app\Traits\SignIn;
@@ -127,13 +126,8 @@ class ImpersonateTest extends TestCase
 
     private function createUser($firstName, $role)
     {
-        return User::create([
+        return factory(User::class)->create([
             'first_name' => $firstName,
-            'last_name' => $this->faker->lastName,
-            'phone' => $this->faker->phoneNumber,
-            'is_active' => 1,
-            'email' => $this->faker->email,
-            'owner_id' => Owner::first(['id'])->id,
             'role_id' => $role->id,
         ]);
     }

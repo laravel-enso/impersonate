@@ -5,15 +5,13 @@ use Faker\Factory;
 use Tests\TestCase;
 use LaravelEnso\MenuManager\app\Models\Menu;
 use LaravelEnso\RoleManager\app\Models\Role;
-use LaravelEnso\TestHelper\app\Traits\SignIn;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use LaravelEnso\PermissionManager\app\Models\Permission;
 
 class ImpersonateTest extends TestCase
 {
-    use RefreshDatabase, SignIn;
+    use RefreshDatabase;
 
-    private $faker;
     private $impersonator;
     private $userToImpersonate;
 
@@ -23,10 +21,7 @@ class ImpersonateTest extends TestCase
 
         // $this->withoutExceptionHandling();
 
-        $this->seed()
-            ->signIn(User::first());
-
-        $this->faker = Factory::create();
+        $this->seed();
     }
 
     /** @test */
@@ -62,7 +57,7 @@ class ImpersonateTest extends TestCase
     /** @test */
     public function cant_impersonate_self()
     {
-        $this->userToImpersonate = $this->createUser('userToImpersonate', $this->adminRole());
+        $this->userToImpersonate = $this->createUser($this->adminRole());
 
         $this->actingAs($this->userToImpersonate);
 
@@ -84,9 +79,8 @@ class ImpersonateTest extends TestCase
 
     private function setUpUsers(Role $role)
     {
-        $this->impersonator = $this->createUser('impersonator', $role);
-        $this->userToImpersonate = $this->createUser('userToImpersonate', $role);
-
+        $this->impersonator = $this->createUser($role);
+        $this->userToImpersonate = $this->createUser($role);
         $this->actingAs($this->impersonator);
     }
 
@@ -94,10 +88,7 @@ class ImpersonateTest extends TestCase
     {
         $menu = Menu::first(['id']);
 
-        $role = Role::create([
-            'name' => 'adminRole',
-            'display_name' => $this->faker->word,
-            'description' => $this->faker->sentence,
+        $role = factory(Role::class)->create([
             'menu_id' => $menu->id,
         ]);
 
@@ -111,10 +102,7 @@ class ImpersonateTest extends TestCase
     {
         $menu = Menu::first(['id']);
 
-        $role = Role::create([
-            'name' => 'defaultAccessRole',
-            'display_name' => $this->faker->word,
-            'description' => $this->faker->sentence,
+        $role = factory(Role::class)->create([
             'menu_id' => $menu->id,
         ]);
 
@@ -124,11 +112,11 @@ class ImpersonateTest extends TestCase
         return $role;
     }
 
-    private function createUser($firstName, $role)
+    private function createUser($role)
     {
         return factory(User::class)->create([
-            'first_name' => $firstName,
             'role_id' => $role->id,
+            'is_active' => true,
         ]);
     }
 }

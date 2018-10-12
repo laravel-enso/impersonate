@@ -17,7 +17,7 @@ class ImpersonateController extends Controller
         session()->put('impersonating', $user->id);
 
         return [
-            'message' => __('Impersonating').' '.$user->fullName,
+            'message' => __('Impersonating').' '.$user->person->name,
         ];
     }
 

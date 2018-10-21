@@ -10,8 +10,7 @@ class Impersonate
     {
         if ($request->session()->has('impersonating')) {
             auth()->onceUsingId(
-                $request->session()
-                    ->get('impersonating')
+                $request->session()->get('impersonating')
             );
 
             return $next($request);

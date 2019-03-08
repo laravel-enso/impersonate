@@ -15,7 +15,7 @@ class ImpersonateTest extends TestCase
     private $impersonator;
     private $userToImpersonate;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         parent::setUp();
 

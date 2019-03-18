@@ -8,25 +8,35 @@
 
 User impersonation dependency for [Laravel Enso](https://github.com/laravel-enso/Enso).
 
+This package works exclusively within the [Enso](https://github.com/laravel-enso/Enso) ecosystem.
+
+The front end assets that utilize this api are present in the [ui](https://github.com/enso-ui/ui) package.
+
+For live examples and demos, you may visit [laravel-enso.com](https://www.laravel-enso.com)
+
 [![Watch the demo](https://laravel-enso.github.io/impersonate/screenshots/bulma_014_thumb.png)](https://laravel-enso.github.io/impersonate/videos/bulma_how_to_impersonate.webm)
 <sup>click on the photo to view a short demo in compatible browsers</sup>
 
-### Details
+## Installation
+
+Comes pre-installed in Enso.
+
+## Features
 
 - allows a user to impersonate another user, by using a middleware
 - permits testing and debugging from the perspective of another user, without needing his credentials
 - comes with its own controller and routes that permit starting and stopping the impersonation process
-- depends on [Permission Manager](https://github.com/laravel-enso/PermissionManager) in order to be able to verify permissions
+- uses the [Permission Manager](https://github.com/laravel-enso/PermissionManager) package in order to be able to verify permissions
+- the access for the impersonation process is determined by the (admin) user's access to the impersonation routes.
 
-### Configuration & Usage
+## Configuration & Usage
 
 Be sure to check out the full documentation for this package available at [docs.laravel-enso.com](https://docs.laravel-enso.com/backend/impersonate.html)
 
-### Contributions
+## Contributions
 
 are welcome. Pull requests are great, but issues are good too.
 
-### License
+## License
 
 This package is released under the MIT license.
-<!--/h-->

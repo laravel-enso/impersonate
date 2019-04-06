@@ -1,8 +1,8 @@
 <?php
 
-use LaravelEnso\Core\app\Models\User;
 use Faker\Factory;
 use Tests\TestCase;
+use LaravelEnso\Core\app\Models\User;
 use LaravelEnso\MenuManager\app\Models\Menu;
 use LaravelEnso\RoleManager\app\Models\Role;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -86,11 +86,7 @@ class ImpersonateTest extends TestCase
 
     private function adminRole()
     {
-        $menu = Menu::first(['id']);
-
-        $role = factory(Role::class)->create([
-            'menu_id' => $menu->id,
-        ]);
+        $role = $this->createRole();
 
         $role->permissions()
             ->sync(Permission::pluck('id'));
@@ -100,11 +96,7 @@ class ImpersonateTest extends TestCase
 
     private function defaultAccessRole()
     {
-        $menu = Menu::first(['id']);
-
-        $role = factory(Role::class)->create([
-            'menu_id' => $menu->id,
-        ]);
+        $role = $this->createRole();
 
         $role->permissions()
             ->sync(Permission::implicit()->pluck('id'));
@@ -117,6 +109,15 @@ class ImpersonateTest extends TestCase
         return factory(User::class)->create([
             'role_id' => $role->id,
             'is_active' => true,
+        ]);
+    }
+
+    private function createRole()
+    {
+        $menu = Menu::first(['id']);
+
+        return factory(Role::class)->create([
+            'menu_id' => $menu->id,
         ]);
     }
 }

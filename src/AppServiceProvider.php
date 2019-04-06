@@ -16,9 +16,4 @@ class AppServiceProvider extends ServiceProvider
         $this->loadMigrationsFrom(__DIR__.'/database/migrations');
         $this->loadRoutesFrom(__DIR__.'/routes/api.php');
     }
-
-    public function register()
-    {
-        //
-    }
 }

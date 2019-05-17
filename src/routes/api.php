@@ -1,11 +1,9 @@
 <?php
 
 Route::middleware(['web', 'auth', 'core'])
-    ->prefix('api/core/impersonate')->as('core.impersonate.')
     ->namespace('LaravelEnso\Impersonate\app\Http\Controllers')
+    ->prefix('api/core/impersonate')->as('core.impersonate.')
     ->group(function () {
-        Route::get('stop', 'ImpersonateController@stop')
-            ->name('stop');
-        Route::get('/{user}', 'ImpersonateController@start')
-            ->name('start');
+        Route::get('stop', 'Stop')->name('stop');
+        Route::get('{user}', 'Start')->name('start');
     });

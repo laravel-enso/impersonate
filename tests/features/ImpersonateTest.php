@@ -3,10 +3,10 @@
 use Faker\Factory;
 use Tests\TestCase;
 use LaravelEnso\Core\app\Models\User;
-use LaravelEnso\MenuManager\app\Models\Menu;
-use LaravelEnso\RoleManager\app\Models\Role;
+use LaravelEnso\Menus\app\Models\Menu;
+use LaravelEnso\Roles\app\Models\Role;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use LaravelEnso\PermissionManager\app\Models\Permission;
+use LaravelEnso\Permissions\app\Models\Permission;
 
 class ImpersonateTest extends TestCase
 {

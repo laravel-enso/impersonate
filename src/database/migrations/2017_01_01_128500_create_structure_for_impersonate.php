@@ -1,8 +1,8 @@
 <?php
 
-use LaravelEnso\StructureManager\app\Classes\StructureMigration;
+use LaravelEnso\Migrator\app\Database\Migration;
 
-class CreateStructureForImpersonate extends StructureMigration
+class CreateStructureForImpersonate extends Migration
 {
     protected $permissions = [
         ['name' => 'core.impersonate.start', 'description' => 'Start impersonating user', 'type' => 0, 'is_default' => false],

@@ -6,7 +6,7 @@
         "impersonate",
         "impersonate-users"
     ],
-    "homepage": "https://github.com/laravel-enso/Impersonate",
+    "homepage": "https://github.com/laravel-enso/impersonate",
     "type": "library",
     "license": "MIT",
     "authors": [
@@ -19,7 +19,7 @@
     ],
     "require": {
         "php": ">=7.1.0",
-        "laravel-enso/core": "4.2.*"
+        "laravel-enso/core": "4.3.*"
     },
     "autoload": {
         "psr-4": {

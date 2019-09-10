@@ -3,13 +3,14 @@
 namespace LaravelEnso\Impersonate\app\Http\Middleware;
 
 use Closure;
+use Illuminate\Support\Facades\Auth;
 
 class Impersonate
 {
     public function handle($request, Closure $next)
     {
         if ($request->session()->has('impersonating')) {
-            auth()->onceUsingId(
+            Auth::onceUsingId(
                 $request->session()->get('impersonating')
             );
 

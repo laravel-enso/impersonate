@@ -17,19 +17,7 @@ For live examples and demos, you may visit [laravel-enso.com](https://www.larave
 [![Watch the demo](https://laravel-enso.github.io/impersonate/screenshots/bulma_014_thumb.png)](https://laravel-enso.github.io/impersonate/videos/bulma_how_to_impersonate.webm)
 <sup>click on the photo to view a short demo in compatible browsers</sup>
 
-## Installation
-
-Comes pre-installed in Enso.
-
-## Features
-
-- allows a user to impersonate another user, by using a middleware
-- permits testing and debugging from the perspective of another user, without needing his credentials
-- comes with its own controller and routes that permit starting and stopping the impersonation process
-- uses the [Permission Manager](https://github.com/laravel-enso/Permissions) package in order to be able to verify permissions
-- the access for the impersonation process is determined by the (admin) user's access to the impersonation routes.
-
-## Configuration & Usage
+### Installation, Configuration & Usage
 
 Be sure to check out the full documentation for this package available at [docs.laravel-enso.com](https://docs.laravel-enso.com/backend/impersonate.html)
 

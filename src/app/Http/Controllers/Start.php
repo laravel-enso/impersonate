@@ -2,9 +2,9 @@
 
 namespace LaravelEnso\Impersonate\app\Http\Controllers;
 
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Routing\Controller;
 use LaravelEnso\Core\app\Models\User;
-use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class Start extends Controller
 {

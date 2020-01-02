@@ -1,6 +1,6 @@
 <?php
 
-namespace LaravelEnso\Impersonate\app\Traits;
+namespace LaravelEnso\Impersonate\App\Traits;
 
 trait Impersonates
 {

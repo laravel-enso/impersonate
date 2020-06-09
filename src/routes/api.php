@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::middleware(['web', 'auth', 'core'])
+Route::middleware(['web', 'auth:web', 'core'])
     ->namespace('LaravelEnso\Impersonate\App\Http\Controllers')
     ->prefix('api/core/impersonate')->as('core.impersonate.')
     ->group(function () {

@@ -1,6 +1,7 @@
 <?php
 
 use Faker\Factory;
+use Illuminate\Contracts\Auth\Authenticatable;
 use Tests\TestCase;
 use LaravelEnso\Core\App\Models\User;
 use LaravelEnso\Menus\App\Models\Menu;
@@ -14,6 +15,7 @@ class ImpersonateTest extends TestCase
 
     private $impersonator;
     private $userToImpersonate;
+    private $guard;
 
     protected function setUp(): void
     {
@@ -22,6 +24,8 @@ class ImpersonateTest extends TestCase
         // $this->withoutExceptionHandling();
 
         $this->seed();
+
+        $this->guard = 'web';
     }
 
     /** @test */
@@ -119,5 +123,10 @@ class ImpersonateTest extends TestCase
         return factory(Role::class)->create([
             'menu_id' => $menu->id,
         ]);
+    }
+
+    public function actingAs(Authenticatable $user)
+    {
+        return parent::actingAs($user, $this->guard);
     }
 }

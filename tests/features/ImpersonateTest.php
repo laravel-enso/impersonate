@@ -63,7 +63,7 @@ class ImpersonateTest extends TestCase
     {
         $this->userToImpersonate = $this->createUser($this->adminRole());
 
-        $this->actingAs($this->userToImpersonate);
+        $this->loginAs($this->userToImpersonate);
 
         $this->get(route('core.impersonate.start', $this->userToImpersonate->id, false))
             ->assertStatus(403);
@@ -85,7 +85,7 @@ class ImpersonateTest extends TestCase
     {
         $this->impersonator = $this->createUser($role);
         $this->userToImpersonate = $this->createUser($role);
-        $this->actingAs($this->impersonator);
+        $this->loginAs($this->impersonator);
     }
 
     private function adminRole()
@@ -125,8 +125,8 @@ class ImpersonateTest extends TestCase
         ]);
     }
 
-    public function actingAs(Authenticatable $user)
+    public function loginAs(Authenticatable $user)
     {
-        return parent::actingAs($user, $this->guard);
+        return $this->actingAs($user, $this->guard);
     }
 }

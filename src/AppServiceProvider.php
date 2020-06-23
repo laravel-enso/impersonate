@@ -3,7 +3,7 @@
 namespace LaravelEnso\Impersonate;
 
 use Illuminate\Support\ServiceProvider;
-use LaravelEnso\Impersonate\App\Http\Middleware\Impersonate;
+use LaravelEnso\Impersonate\Http\Middleware\Impersonate;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -11,8 +11,8 @@ class AppServiceProvider extends ServiceProvider
     {
         $this->app['router']->aliasMiddleware('impersonate', Impersonate::class);
 
-        $this->loadMigrationsFrom(__DIR__.'/database/migrations');
+        $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
 
-        $this->loadRoutesFrom(__DIR__.'/routes/api.php');
+        $this->loadRoutesFrom(__DIR__.'/../routes/api.php');
     }
 }

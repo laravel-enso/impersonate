@@ -9,17 +9,15 @@
     "homepage": "https://github.com/laravel-enso/impersonate",
     "type": "library",
     "license": "MIT",
-    "authors": [
-        {
-            "name": "Adrian Ocneanu",
-            "email": "aocneanu@gmail.com",
-            "homepage": "https://laravel-enso.com",
-            "role": "Developer"
-        }
-    ],
+    "authors": [{
+        "name": "Adrian Ocneanu",
+        "email": "aocneanu@gmail.com",
+        "homepage": "https://laravel-enso.com",
+        "role": "Developer"
+    }],
     "require": {
-        "laravel-enso/core": "4.8.*",
-        "laravel-enso/migrator": "1.1.*"
+        "laravel-enso/core": "^5.0",
+        "laravel-enso/migrator": "^2.0"
     },
     "autoload": {
         "psr-4": {

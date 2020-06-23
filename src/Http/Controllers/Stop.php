@@ -1,6 +1,6 @@
 <?php
 
-namespace LaravelEnso\Impersonate\App\Http\Controllers;
+namespace LaravelEnso\Impersonate\Http\Controllers;
 
 use Illuminate\Routing\Controller;
 

@@ -10,7 +10,7 @@ class Impersonate
     public function handle($request, Closure $next)
     {
         if ($request->hasSession() && $request->session()->has('impersonating')) {
-            Auth::onceUsingId(
+            Auth::guard('web')->onceUsingId(
                 $request->session()->get('impersonating')
             );
 

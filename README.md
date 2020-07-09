@@ -1,6 +1,6 @@
 # Impersonate
 
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/fdc8f68f71064cd0b811462ef097879d)](https://www.codacy.com/app/laravel-enso/impersonate?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=laravel-enso/impersonate&amp;utm_campaign=Badge_Grade)
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/a6e7ad3ebd5a46cfb8625d37cb68ad9c)](https://www.codacy.com/gh/laravel-enso/impersonate?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=laravel-enso/impersonate&amp;utm_campaign=Badge_Grade) 
 [![StyleCI](https://github.styleci.io/repos/94622194/shield?branch=master)](https://github.styleci.io/repos/94622194)
 [![License](https://poser.pugx.org/laravel-enso/impersonate/license)](https://packagist.org/packages/laravel-enso/impersonate)
 [![Total Downloads](https://poser.pugx.org/laravel-enso/impersonate/downloads)](https://packagist.org/packages/laravel-enso/impersonate)

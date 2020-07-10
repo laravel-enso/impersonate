@@ -11,9 +11,8 @@ class Impersonate
     public function handle($request, Closure $next)
     {
         if ($request->hasSession() && $request->session()->has('impersonating')) {
-            Auth::setUser(
-                $this->provider()::find($request->session()->get('impersonating'))
-            );
+            $user = $this->provider()::find($request->session()->get('impersonating'));
+            Auth::setUser($user);
 
             return $next($request);
         }

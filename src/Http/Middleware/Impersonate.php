@@ -23,8 +23,8 @@ class Impersonate
 
     protected function provider()
     {
-        $provoider = Config::get('auth.guards.web.provider');
+        $provider = Config::get('auth.guards.web.provider');
 
-        return Config::get("auth.providers.{$provoider}.model");
+        return Config::get("auth.providers.{$provider}.model");
     }
 }

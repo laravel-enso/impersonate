@@ -16,7 +16,7 @@
         "role": "Developer"
     }],
     "require": {
-        "laravel-enso/core": "^5.0",
+        "laravel-enso/core": "^6.0",
         "laravel-enso/migrator": "^2.0"
     },
     "autoload": {

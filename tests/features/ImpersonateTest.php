@@ -1,6 +1,5 @@
 <?php
 
-use Faker\Factory;
 use Illuminate\Contracts\Auth\Authenticatable;
 use Tests\TestCase;
 use LaravelEnso\Core\Models\User;
@@ -110,7 +109,7 @@ class ImpersonateTest extends TestCase
 
     private function createUser($role)
     {
-        return factory(User::class)->create([
+        return User::factory()->create([
             'role_id' => $role->id,
             'is_active' => true,
         ]);
@@ -120,7 +119,7 @@ class ImpersonateTest extends TestCase
     {
         $menu = Menu::first(['id']);
 
-        return factory(Role::class)->create([
+        return Role::factory()->create([
             'menu_id' => $menu->id,
         ]);
     }

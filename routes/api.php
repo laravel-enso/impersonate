@@ -1,11 +1,12 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use LaravelEnso\Impersonate\Http\Controllers\Start;
+use LaravelEnso\Impersonate\Http\Controllers\Stop;
 
 Route::middleware(['web', 'auth:web', 'core'])
-    ->namespace('LaravelEnso\Impersonate\Http\Controllers')
     ->prefix('api/core/impersonate')->as('core.impersonate.')
     ->group(function () {
-        Route::get('stop', 'Stop')->name('stop');
-        Route::get('{user}', 'Start')->name('start');
+        Route::get('stop', Stop::class)->name('stop');
+        Route::get('{user}', Start::class)->name('start');
     });

@@ -1,12 +1,12 @@
 <?php
 
 use Illuminate\Contracts\Auth\Authenticatable;
-use Tests\TestCase;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use LaravelEnso\Core\Models\User;
 use LaravelEnso\Menus\Models\Menu;
-use LaravelEnso\Roles\Models\Role;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use LaravelEnso\Permissions\Models\Permission;
+use LaravelEnso\Roles\Models\Role;
+use Tests\TestCase;
 
 class ImpersonateTest extends TestCase
 {
@@ -19,8 +19,6 @@ class ImpersonateTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-
-        // $this->withoutExceptionHandling();
 
         $this->seed();
 

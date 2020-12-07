@@ -4,6 +4,7 @@ namespace LaravelEnso\Impersonate\Http\Controllers;
 
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Session;
 use LaravelEnso\Core\Models\User;
 
 class Start extends Controller
@@ -14,7 +15,7 @@ class Start extends Controller
     {
         $this->authorize('impersonate', $user);
 
-        session()->put('impersonating', $user->id);
+        Session::put('impersonating', $user->id);
 
         return ['message' => __('Impersonating :user', ['user' => $user->person->name])];
     }

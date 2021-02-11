@@ -10,12 +10,10 @@ class AuthServiceProvider extends ServiceProvider
 {
     public function boot()
     {
-        Gate::define(
-            'impersonate',
-            fn (User $user, User $targetUser) => $user->can('access-route', 'core.impersonate.start')
-                && ! $targetUser->isAdmin()
-                && $user->id !== $targetUser->id
-                && ! $user->isImpersonating()
-        );
+        Gate::define('impersonate', fn (User $user, User $targetUser) => $user
+            ->can('access-route', 'core.impersonate.start')
+            && ! $targetUser->isAdmin()
+            && $user->id !== $targetUser->id
+            && ! $user->isImpersonating());
     }
 }

@@ -4,7 +4,7 @@ namespace LaravelEnso\Impersonate;
 
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Gate;
-use LaravelEnso\Core\Models\User;
+use LaravelEnso\Users\Models\User;
 
 class AuthServiceProvider extends ServiceProvider
 {

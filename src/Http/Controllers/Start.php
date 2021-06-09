@@ -5,7 +5,7 @@ namespace LaravelEnso\Impersonate\Http\Controllers;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Session;
-use LaravelEnso\Core\Models\User;
+use LaravelEnso\Users\Models\User;
 
 class Start extends Controller
 {

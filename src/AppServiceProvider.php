@@ -3,10 +3,10 @@
 namespace LaravelEnso\Impersonate;
 
 use Illuminate\Support\ServiceProvider;
-use LaravelEnso\Core\Models\User;
 use LaravelEnso\DynamicMethods\Services\Methods;
 use LaravelEnso\Impersonate\DynamicMethods\IsImpersonationg;
 use LaravelEnso\Impersonate\Http\Middleware\Impersonate;
+use LaravelEnso\Users\Models\User;
 
 class AppServiceProvider extends ServiceProvider
 {

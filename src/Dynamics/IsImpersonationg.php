@@ -13,6 +13,7 @@ class IsImpersonationg implements Method
     {
         return [User::class];
     }
+
     public function name(): string
     {
         return 'isImpersonating';

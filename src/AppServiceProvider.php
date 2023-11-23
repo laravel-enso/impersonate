@@ -3,10 +3,7 @@
 namespace LaravelEnso\Impersonate;
 
 use Illuminate\Support\ServiceProvider;
-use LaravelEnso\DynamicMethods\Services\Methods;
-use LaravelEnso\Impersonate\DynamicMethods\IsImpersonationg;
 use LaravelEnso\Impersonate\Http\Middleware\Impersonate;
-use LaravelEnso\Users\Models\User;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -18,6 +15,5 @@ class AppServiceProvider extends ServiceProvider
 
         $this->loadRoutesFrom(__DIR__.'/../routes/api.php');
 
-        Methods::bind(User::class, [IsImpersonationg::class]);
     }
 }

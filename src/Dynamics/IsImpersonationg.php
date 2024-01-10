@@ -1,6 +1,6 @@
 <?php
 
-namespace LaravelEnso\Impersonate\DynamicMethods;
+namespace LaravelEnso\Impersonate\Dynamics;
 
 use Closure;
 use Illuminate\Support\Facades\Session;

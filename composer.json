@@ -18,7 +18,7 @@
         }
     ],
     "require": {
-        "laravel-enso/core": "^9.0",
+        "laravel-enso/core": "^10.0",
         "laravel-enso/migrator": "^2.1",
         "laravel-enso/dynamic-methods": "^3.0"
     },
@@ -33,7 +33,7 @@
                 "LaravelEnso\\Impersonate\\AppServiceProvider",
                 "LaravelEnso\\Impersonate\\AuthServiceProvider"
             ],
-            "aliases": {}
+            "aliases": []
         }
     }
 }

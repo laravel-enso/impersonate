@@ -7,6 +7,7 @@ use LaravelEnso\Permissions\Models\Permission;
 use LaravelEnso\Roles\Models\Role;
 use LaravelEnso\Users\Models\User;
 use Tests\TestCase;
+use PHPUnit\Framework\Attributes\Test;
 
 class ImpersonateTest extends TestCase
 {
@@ -25,7 +26,7 @@ class ImpersonateTest extends TestCase
         $this->guard = 'web';
     }
 
-    /** @test */
+    #[Test]
     public function can_impersonate()
     {
         $this->setUpUsers($this->adminRole());
@@ -36,7 +37,7 @@ class ImpersonateTest extends TestCase
             ->assertJsonStructure(['message']);
     }
 
-    /** @test */
+    #[Test]
     public function cant_impersonate_if_is_not_allowed()
     {
         $this->setUpUsers($this->defaultAccessRole());
@@ -45,7 +46,7 @@ class ImpersonateTest extends TestCase
             ->assertStatus(403);
     }
 
-    /** @test */
+    #[Test]
     public function cant_impersonate_if_is_impersonating()
     {
         $this->setUpUsers($this->adminRole());
@@ -55,7 +56,7 @@ class ImpersonateTest extends TestCase
             ->assertStatus(403);
     }
 
-    /** @test */
+    #[Test]
     public function cant_impersonate_self()
     {
         $this->userToImpersonate = $this->createUser($this->adminRole());
@@ -66,7 +67,7 @@ class ImpersonateTest extends TestCase
             ->assertStatus(403);
     }
 
-    /** @test */
+    #[Test]
     public function stop_impersonating()
     {
         $this->setUpUsers($this->adminRole());

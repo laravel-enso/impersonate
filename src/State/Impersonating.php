@@ -7,13 +7,13 @@ use LaravelEnso\Core\Contracts\ProvidesState;
 
 class Impersonating implements ProvidesState
 {
-    public function mutation(): string
+    public function store(): string
     {
-        return 'setImpersonating';
+        return 'app';
     }
 
-    public function state(): mixed
+    public function state(): array
     {
-        return Session::has('impersonating');
+        return ['impersonating' => Session::has('impersonating')];
     }
 }

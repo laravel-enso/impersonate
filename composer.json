@@ -1,6 +1,6 @@
 {
     "name": "laravel-enso/impersonate",
-    "description": "User impersonation dependency for Laravel Enso",
+    "description": "User impersonation support for Laravel Enso",
     "keywords": [
         "laravel-enso",
         "impersonate",

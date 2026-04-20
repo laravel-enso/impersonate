@@ -6,8 +6,8 @@ use LaravelEnso\Menus\Models\Menu;
 use LaravelEnso\Permissions\Models\Permission;
 use LaravelEnso\Roles\Models\Role;
 use LaravelEnso\Users\Models\User;
-use Tests\TestCase;
 use PHPUnit\Framework\Attributes\Test;
+use Tests\TestCase;
 
 class ImpersonateTest extends TestCase
 {
@@ -109,7 +109,7 @@ class ImpersonateTest extends TestCase
     private function createUser($role)
     {
         return User::factory()->create([
-            'role_id' => $role->id,
+            'role_id'   => $role->id,
             'is_active' => true,
         ]);
     }

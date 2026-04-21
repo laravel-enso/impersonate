@@ -22,6 +22,7 @@ class ImpersonateTest extends TestCase
         parent::setUp();
 
         $this->seed();
+        $this->withoutMiddleware(LaravelEnso\ControlPanelApi\Http\Middleware\RequestMonitor::class);
 
         $this->guard = 'web';
     }

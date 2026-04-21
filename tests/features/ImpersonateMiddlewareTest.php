@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Session\Middleware\StartSession;
 use Illuminate\Support\Facades\Route;
 use LaravelEnso\Impersonate\State\Impersonating;
 use LaravelEnso\Menus\Models\Menu;
@@ -23,12 +24,13 @@ class ImpersonateMiddlewareTest extends TestCase
         parent::setUp();
 
         $this->seed();
+        $this->withoutMiddleware(LaravelEnso\ControlPanelApi\Http\Middleware\RequestMonitor::class);
 
         $role = $this->adminRole();
         $this->impersonator = $this->createUser($role);
         $this->userToImpersonate = $this->createUser($role);
 
-        Route::middleware(['web', 'auth', 'impersonate'])
+        Route::middleware([StartSession::class, 'auth', 'impersonate'])
             ->get('/_test/impersonate/current-user', fn () => [
                 'id'    => auth()->id(),
                 'state' => (new Impersonating())->state(),

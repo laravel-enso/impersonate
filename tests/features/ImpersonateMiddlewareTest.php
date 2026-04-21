@@ -30,7 +30,7 @@ class ImpersonateMiddlewareTest extends TestCase
 
         Route::middleware(['web', 'auth', 'impersonate'])
             ->get('/_test/impersonate/current-user', fn () => [
-                'id' => auth()->id(),
+                'id'    => auth()->id(),
                 'state' => (new Impersonating())->state(),
             ]);
     }
@@ -44,7 +44,7 @@ class ImpersonateMiddlewareTest extends TestCase
             ->get('/_test/impersonate/current-user')
             ->assertStatus(200)
             ->assertJson([
-                'id' => $this->userToImpersonate->id,
+                'id'    => $this->userToImpersonate->id,
                 'state' => ['impersonating' => true],
             ]);
     }
@@ -69,7 +69,7 @@ class ImpersonateMiddlewareTest extends TestCase
     private function createUser(Role $role): User
     {
         return User::factory()->create([
-            'role_id' => $role->id,
+            'role_id'   => $role->id,
             'is_active' => true,
         ]);
     }

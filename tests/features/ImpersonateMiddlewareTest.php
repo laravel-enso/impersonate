@@ -18,6 +18,7 @@ class ImpersonateMiddlewareTest extends TestCase
     private User $impersonator;
     private User $userToImpersonate;
     private string $guard = 'web';
+    private string $domain = 'impersonate.test';
 
     protected function setUp(): void
     {
@@ -31,10 +32,14 @@ class ImpersonateMiddlewareTest extends TestCase
         $this->userToImpersonate = $this->createUser($role);
 
         Route::middleware([StartSession::class, 'auth', 'impersonate'])
+            ->domain($this->domain)
             ->get('/_test/impersonate/current-user', fn () => [
                 'id'    => auth()->id(),
                 'state' => (new Impersonating())->state(),
-            ]);
+            ])->name('test.impersonate.current-user');
+
+        Route::getRoutes()->refreshNameLookups();
+        Route::getRoutes()->refreshActionLookups();
     }
 
     #[Test]
@@ -43,7 +48,7 @@ class ImpersonateMiddlewareTest extends TestCase
         parent::actingAs($this->impersonator, $this->guard);
 
         $this->withSession(['impersonating' => $this->userToImpersonate->id])
-            ->get('/_test/impersonate/current-user')
+            ->get(route('test.impersonate.current-user'))
             ->assertStatus(200)
             ->assertJson([
                 'id'    => $this->userToImpersonate->id,
